@@ -11,8 +11,8 @@ import CustomCursor from "@/components/common/CustomCursor";
 import Preloader from "@/components/common/Preloader";
 
 export const metadata: Metadata = {
-  title: "KEROSYNE",
-  description: "High-contrast Neo-Brutalist fashion experience.",
+  title: "KEROSYNE / SHOP",
+  description: "Curated drip for the next-gen fashion",
 };
 
 export const viewport: Viewport = {

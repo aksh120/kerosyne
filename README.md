@@ -2,7 +2,7 @@
 
 ## HIGH-CONTRAST NEO-BRUTALIST DIGITAL EXPERIENCE
 
-**Kerosyne** is a high-octane e-commerce platform designed for the next generation. It rejects the polished, generic aesthetics of modern web design in favor of a raw, high-contrast, Neo-Brutalist visual language. 
+**Kerosyne** is a high-octane e-commerce platform designed for the next-generation. It rejects the polished, generic aesthetics of modern web design in favor of a raw, high-contrast, Neo-Brutalist visual language. 
 
 Built with **Next.js 14**, **Three.js**, and **Framer Motion**, Kerosyne is a performance-first digital flagship that merges fashion with interactive 3D art.
 
