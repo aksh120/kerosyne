@@ -13,6 +13,26 @@ const marqueeText = [
   "//",
   "EST. 2025",
   "//",
+  "UNISEX",
+  "//",
+  "RAW STYLE",
+  "//",
+  "PREMIUM OVERSIZED",
+  "//",
+  "ARCHIVAL PIECES",
+  "//",
+  "DROP 001",
+  "//",
+  "CONCEPTUAL WEAR",
+  "//",
+  "STYLED JERSEY",
+  "//",
+  "STREETWEAR EVOLUTION",
+  "//",
+  "UTILITY",
+  "//",
+  "ANTI-FAST FASHION",
+  "//",
 ];
 
 const Brands = () => {
@@ -21,7 +41,7 @@ const Brands = () => {
       <motion.div
         className="flex whitespace-nowrap items-center w-max"
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ ease: "linear", duration: 20, repeat: Infinity }}
+        transition={{ ease: "linear", duration: 60, repeat: Infinity }}
       >
         {[...marqueeText, ...marqueeText, ...marqueeText, ...marqueeText, ...marqueeText].map((text, idx) => (
           <span

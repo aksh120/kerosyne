@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Arjun Sharma",
+    "email": "arjun@example.com",
+    "role": "Customer",
+    "joined": "2023-08-14"
+  },
+  {
+    "id": 2,
+    "name": "Priya Verma",
+    "email": "priya@example.com",
+    "role": "Customer",
+    "joined": "2023-08-15"
+  },
+  {
+    "id": 3,
+    "name": "Kerosyne Admin",
+    "email": "kerosyne@akimbolabs.site",
+    "role": "Admin",
+    "joined": "2023-01-01"
+  }
+]

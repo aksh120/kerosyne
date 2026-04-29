@@ -16,8 +16,7 @@ const socialsData: SocialNetworks[] = [
 ];
 
 const paymentBadgesData: PaymentBadge[] = [
-  { id: 1, srcUrl: "/icons/googlePay.svg" },
-  { id: 2, srcUrl: "/icons/UPI.png" },
+  { id: 1, srcUrl: "/icons/UPI.png" },
 ];
 
 const Footer = () => {

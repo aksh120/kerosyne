@@ -1,0 +1,26 @@
+[
+  {
+    "id": "ORD-001",
+    "customer": "Arjun Sharma",
+    "email": "arjun@example.com",
+    "status": "Delivered",
+    "total": 3499,
+    "date": "2024-04-20"
+  },
+  {
+    "id": "ORD-002",
+    "customer": "Priya Verma",
+    "email": "priya@example.com",
+    "status": "Processing",
+    "total": 2299,
+    "date": "2024-04-28"
+  },
+  {
+    "id": "ORD-003",
+    "customer": "Rahul Gupta",
+    "email": "rahul@example.com",
+    "status": "Shipped",
+    "total": 1899,
+    "date": "2024-04-25"
+  }
+]

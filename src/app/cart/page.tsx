@@ -14,10 +14,8 @@ import { RootState } from "@/lib/store";
 import { useAppSelector } from "@/lib/hooks/redux";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
-
-const CartScene = dynamic(() => import("@/components/3d/CartScene"), { ssr: false });
-const FloatingShape = dynamic(() => import("@/components/3d/FloatingShape"), { ssr: false });
+import ClientCartScene from "@/components/common/ClientCartScene";
+import ClientFloatingShape from "@/components/common/ClientFloatingShape";
 
 export default function CartPage() {
   const { cart, totalPrice, adjustedTotalPrice } = useAppSelector(
@@ -28,10 +26,10 @@ export default function CartPage() {
     <main className="pb-20 relative">
       {/* Decorative 3D elements */}
       <div className="absolute top-16 right-4 xl:right-16 hidden lg:block pointer-events-auto z-0">
-        <CartScene className="w-[140px] h-[140px]" />
+        <ClientCartScene className="w-[140px] h-[140px]" />
       </div>
       <div className="absolute bottom-20 left-4 xl:left-16 hidden lg:block pointer-events-auto z-0">
-        <FloatingShape shape="diamond" size={80} />
+        <ClientFloatingShape shape="diamond" size={80} />
       </div>
       <div className="max-w-frame mx-auto px-4 xl:px-0 relative z-10">
         {cart && cart.items.length > 0 ? (
@@ -74,7 +72,7 @@ export default function CartPage() {
                 <div className="flex flex-col space-y-5">
                   <div className="flex items-center justify-between font-bold">
                     <span className="md:text-xl text-black/60 uppercase">Subtotal</span>
-                    <span className="md:text-xl text-black">${totalPrice}</span>
+                    <span className="md:text-xl text-black">₹{totalPrice}</span>
                   </div>
                   <div className="flex items-center justify-between font-bold">
                     <span className="md:text-xl text-black/60 uppercase">
@@ -85,7 +83,7 @@ export default function CartPage() {
                       %)
                     </span>
                     <span className="md:text-xl text-red-600">
-                      -${Math.round(totalPrice - adjustedTotalPrice)}
+                      -₹{Math.round(totalPrice - adjustedTotalPrice)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between font-bold">
@@ -98,7 +96,7 @@ export default function CartPage() {
                   <div className="flex items-center justify-between font-black">
                     <span className="md:text-xl text-black uppercase">Total</span>
                     <span className="text-2xl md:text-3xl">
-                      ${Math.round(adjustedTotalPrice)}
+                      ₹{Math.round(adjustedTotalPrice)}
                     </span>
                   </div>
                 </div>

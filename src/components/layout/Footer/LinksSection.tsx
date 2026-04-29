@@ -11,22 +11,17 @@ const footerLinksData: FooterLinks[] = [
       {
         id: 11,
         label: "about",
-        url: "#",
+        url: "/about",
       },
       {
         id: 12,
         label: "features",
-        url: "#",
+        url: "/features",
       },
       {
         id: 13,
         label: "works",
-        url: "#",
-      },
-      {
-        id: 14,
-        label: "career",
-        url: "#",
+        url: "/works",
       },
     ],
   },
@@ -37,22 +32,17 @@ const footerLinksData: FooterLinks[] = [
       {
         id: 21,
         label: "customer support",
-        url: "#",
+        url: "/support",
       },
       {
         id: 22,
-        label: "delivery details",
-        url: "#",
+        label: "terms & conditions",
+        url: "/terms",
       },
       {
         id: 23,
-        label: "terms & conditions",
-        url: "#",
-      },
-      {
-        id: 24,
         label: "privacy policy",
-        url: "#",
+        url: "/privacy",
       },
     ],
   },
@@ -63,48 +53,17 @@ const footerLinksData: FooterLinks[] = [
       {
         id: 31,
         label: "account",
-        url: "#",
+        url: "/faq#account",
       },
       {
         id: 32,
-        label: "manage deliveries",
-        url: "#",
+        label: "orders",
+        url: "/faq#orders",
       },
       {
         id: 33,
-        label: "orders",
-        url: "#",
-      },
-      {
-        id: 34,
         label: "payments",
-        url: "#",
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "resources",
-    children: [
-      {
-        id: 41,
-        label: "Free eBooks",
-        url: "#",
-      },
-      {
-        id: 42,
-        label: "development tutorial",
-        url: "#",
-      },
-      {
-        id: 43,
-        label: "How to - Blog",
-        url: "#",
-      },
-      {
-        id: 44,
-        label: "youtube playlist",
-        url: "#",
+        url: "/faq#payments",
       },
     ],
   },

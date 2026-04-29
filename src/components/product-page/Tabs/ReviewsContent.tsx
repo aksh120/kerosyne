@@ -8,10 +8,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import ReviewCard from "@/components/common/ReviewCard";
-import { reviewsData } from "@/app/page";
 import Link from "next/link";
+import { Review } from "@/types/review.types";
 
-const ReviewsContent = () => {
+const ReviewsContent = ({ data }: { data: Review[] }) => {
   return (
     <section>
       <div className="flex items-center justify-between flex-col sm:flex-row mb-5 sm:mb-6">
@@ -42,7 +42,7 @@ const ReviewsContent = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5 sm:mb-9">
-        {reviewsData.map((review) => (
+        {data.map((review) => (
           <ReviewCard key={review.id} data={review} isAction isDate />
         ))}
       </div>

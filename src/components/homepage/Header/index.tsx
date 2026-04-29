@@ -5,9 +5,7 @@ import { integralCF } from "@/styles/fonts";
 import Link from "next/link";
 import React from "react";
 import * as motion from "framer-motion/client";
-import dynamic from "next/dynamic";
-
-const HeroScene = dynamic(() => import("@/components/3d/HeroScene"), { ssr: false });
+import ClientHeroScene from "@/components/common/ClientHeroScene";
 
 const Header = () => {
   return (

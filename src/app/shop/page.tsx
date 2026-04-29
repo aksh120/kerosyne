@@ -10,7 +10,7 @@ import {
 import MobileFilters from "@/components/shop-page/filters/MobileFilters";
 import Filters from "@/components/shop-page/filters";
 import { FiSliders } from "react-icons/fi";
-import { newArrivalsData, relatedProductData, topSellingData } from "../page";
+import { getProducts } from "@/lib/data";
 import ProductCard from "@/components/common/ProductCard";
 import {
   Pagination,
@@ -21,124 +21,118 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import dynamic from "next/dynamic";
+import ClientFloatingShape from "@/components/common/ClientFloatingShape";
 
-const FloatingShape = dynamic(() => import("@/components/3d/FloatingShape"), { ssr: false });
+export default async function ShopPage() {
+  const productsData = await getProducts();
 
-export default function ShopPage() {
+  // Flatten and filter for display
+  const displayProducts = Array.isArray(productsData) ? productsData : [];
+
   return (
-    <main className="pb-20 relative">
+    <main className="pb-20 relative bg-[#FAFAFA]">
       {/* Decorative 3D elements */}
-      <div className="absolute top-20 right-4 xl:right-16 hidden lg:block pointer-events-auto z-0">
-        <FloatingShape shape="hanger" size={110} />
+      <div className="absolute top-40 right-10 hidden xl:block pointer-events-none z-0">
+        <ClientFloatingShape shape="hanger" size={150} />
       </div>
-      <div className="absolute bottom-40 left-4 xl:left-16 hidden lg:block pointer-events-auto z-0">
-        <FloatingShape shape="cube" size={70} />
+      <div className="absolute bottom-80 left-10 hidden xl:block pointer-events-none z-0">
+        <ClientFloatingShape shape="cube" size={100} />
       </div>
-      <div className="max-w-frame mx-auto px-4 xl:px-0 relative z-10">
-        <hr className="h-[1px] border-t-black/10 mb-5 sm:mb-6" />
+
+      <div className="max-w-[1440px] mx-auto px-4 xl:px-6 relative z-10 pt-10">
         <BreadcrumbShop />
-        <div className="flex md:space-x-5 items-start">
-          <div className="hidden md:block min-w-[295px] max-w-[295px] border-[3px] border-black rounded-none px-5 md:px-6 py-5 space-y-5 md:space-y-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-black text-xl">Filters</span>
-              <FiSliders className="text-2xl text-black/40" />
+
+        <div className="flex flex-col md:flex-row md:space-x-8 items-start mt-10">
+          {/* Sidebar */}
+          <aside className="hidden md:block min-w-[280px] max-w-[280px] border-[4px] border-black rounded-none p-6 space-y-10 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] bg-white sticky top-24 ml-0">
+            <div className="flex items-center justify-between border-b-[4px] border-black pb-4">
+              <span className="font-black text-black text-xl uppercase italic">Filters</span>
+              <FiSliders className="text-xl text-black" />
             </div>
             <Filters />
-          </div>
-          <div className="flex flex-col w-full space-y-5">
-            <div className="flex flex-col lg:flex-row lg:justify-between">
-              <div className="flex items-center justify-between">
-                <h1 className="font-bold text-2xl md:text-[32px]">Casual</h1>
-                <MobileFilters />
-              </div>
-              <div className="flex flex-col sm:items-center sm:flex-row">
-                <span className="text-sm md:text-base text-black/60 mr-3">
-                  Showing 1-10 of 100 Products
-                </span>
-                <div className="flex items-center">
-                  Sort by:{" "}
-                  <Select defaultValue="most-popular">
-                    <SelectTrigger className="font-bold text-sm px-3 py-2 sm:text-base w-fit text-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-[2px] border-black rounded-none ml-2 hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="most-popular">Most Popular</SelectItem>
-                      <SelectItem value="low-price">Low Price</SelectItem>
-                      <SelectItem value="high-price">High Price</SelectItem>
-                    </SelectContent>
-                  </Select>
+          </aside>
+
+          {/* Main Content */}
+          <div className="flex flex-col w-full space-y-10">
+            {/* Dynamic Header Area */}
+            <div className="relative border-[4px] border-black bg-black text-white p-10 shadow-[12px_12px_0px_0px_rgba(0,0,0,0.1)] overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 -translate-y-16 translate-x-16 rotate-45" />
+              <div className="relative z-10 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+                <div>
+                  <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter italic leading-none">
+                    The Shop
+                  </h1>
+                  <p className="font-bold uppercase tracking-[0.3em] text-white/40 mt-4 text-xs md:text-sm">
+                    Curated Hardware / Seasonal Drop 01
+                  </p>
+                </div>
+                <div className="flex flex-col sm:items-end">
+                  <div className="flex items-center bg-white text-black px-4 py-2 border-[2px] border-white font-black uppercase text-xs mb-4">
+                    Sort by:{" "}
+                    <Select defaultValue="most-popular">
+                      <SelectTrigger className="font-black text-xs w-fit bg-transparent border-none p-0 ml-2 focus:ring-0 focus:outline-none">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent className="border-[3px] border-black rounded-none font-bold uppercase text-xs">
+                        <SelectItem value="most-popular">Most Popular</SelectItem>
+                        <SelectItem value="low-price">Low Price</SelectItem>
+                        <SelectItem value="high-price">High Price</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-white/60">
+                    Showing 1-{displayProducts.length} of {displayProducts.length} Products
+                  </span>
                 </div>
               </div>
             </div>
-            <div className="w-full grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-              {[
-                ...relatedProductData.slice(1, 4),
-                ...newArrivalsData.slice(1, 4),
-                ...topSellingData.slice(1, 4),
-              ].map((product) => (
-                <ProductCard key={product.id} data={product} />
+
+            <div className="flex items-center justify-between md:hidden">
+              <h2 className="font-black text-3xl uppercase italic">Casual</h2>
+              <MobileFilters />
+            </div>
+
+            {/* Product Grid - Adjusted gap and sizing */}
+            <div className="w-full grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {displayProducts.map((product) => (
+                <div key={product.id} className="group relative">
+                  <ProductCard data={product} />
+                  <div className="absolute top-4 left-4 bg-black text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                    {product.category}
+                  </div>
+                </div>
               ))}
             </div>
-            <hr className="border-t-[2px] border-black" />
-            <Pagination className="justify-between">
-              <PaginationPrevious href="#" className="border-[2px] border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-none transition-all font-bold uppercase" />
-              <PaginationContent className="space-x-2">
-                <PaginationItem>
-                  <PaginationLink
-                    href="#"
-                    className="text-white bg-black font-bold text-sm border-[2px] border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
-                    isActive
-                  >
-                    1
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink
-                    href="#"
-                    className="text-black bg-white font-bold text-sm border-[2px] border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-none transition-all"
-                  >
-                    2
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="hidden lg:block">
-                  <PaginationLink
-                    href="#"
-                    className="text-black bg-white font-bold text-sm border-[2px] border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-none transition-all"
-                  >
-                    3
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationEllipsis className="text-black font-bold text-sm" />
-                </PaginationItem>
-                <PaginationItem className="hidden lg:block">
-                  <PaginationLink
-                    href="#"
-                    className="text-black bg-white font-bold text-sm border-[2px] border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-none transition-all"
-                  >
-                    8
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="hidden sm:block">
-                  <PaginationLink
-                    href="#"
-                    className="text-black bg-white font-bold text-sm border-[2px] border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-none transition-all"
-                  >
-                    9
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink
-                    href="#"
-                    className="text-black bg-white font-bold text-sm border-[2px] border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-none transition-all"
-                  >
-                    10
-                  </PaginationLink>
-                </PaginationItem>
-              </PaginationContent>
 
-              <PaginationNext href="#" className="border-[2px] border-black rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-none transition-all font-bold uppercase" />
+            <hr className="border-t-[4px] border-black" />
+
+            {/* Enhanced Pagination */}
+            <Pagination className="justify-between">
+              <PaginationPrevious
+                href="#"
+                className="border-[3px] border-black rounded-none px-6 py-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-white transition-all font-black uppercase text-xs"
+              />
+              <PaginationContent className="hidden sm:flex space-x-3">
+                {[1, 2, 3, "...", 10].map((page, i) => (
+                  <PaginationItem key={i}>
+                    {page === "..." ? (
+                      <PaginationEllipsis className="text-black font-black" />
+                    ) : (
+                      <PaginationLink
+                        href="#"
+                        className={`font-black text-sm border-[3px] border-black rounded-none w-12 h-12 flex items-center justify-center transition-all ${page === 1 ? "bg-black text-white shadow-none" : "bg-white text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-none"
+                          }`}
+                      >
+                        {page}
+                      </PaginationLink>
+                    )}
+                  </PaginationItem>
+                ))}
+              </PaginationContent>
+              <PaginationNext
+                href="#"
+                className="border-[3px] border-black rounded-none px-6 py-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-white transition-all font-black uppercase text-xs"
+              />
             </Pagination>
           </div>
         </div>

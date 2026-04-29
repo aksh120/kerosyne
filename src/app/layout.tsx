@@ -26,14 +26,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={satoshi.className}>
+      <body className={`${satoshi.className} min-h-screen flex flex-col`}>
         <Preloader />
         <HolyLoader color="#868686" />
         <CustomCursor />
         <TopBanner />
         <Providers>
           <TopNavbar />
-          {children}
+          <main className="flex-1">
+            {children}
+          </main>
         </Providers>
         <Footer />
       </body>
