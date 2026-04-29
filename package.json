@@ -45,7 +45,7 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.169.0",
     "usehooks-ts": "^3.1.0",
-    "vaul": "^0.9.4"
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@types/node": "^20",
